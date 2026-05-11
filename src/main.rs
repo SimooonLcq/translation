@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use bio::io::fasta::Reader;
 use clap::Parser;
 use serde::Serialize;
-use serde_json;
+use rmp_serde::Serializer;
 use std::fs;
 
 #[derive(Parser)]
@@ -41,7 +41,8 @@ fn main() {
     }
 
     let hset = HSet{x:kmers};
-    let serialized = serde_json::to_string(&hset).unwrap();
+    let mut serialized = Vec::new();
+    hset.serialize(&mut Serializer::new(&mut serialized)).unwrap();
 
     fs::write(parser.fileout, serialized).expect("Error during writing");
 }
