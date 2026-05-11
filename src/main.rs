@@ -1,9 +1,12 @@
 use std::collections::HashSet;
-use bio::io::fasta::Reader;
+use helicase::*;
+use helicase::input::*;
 use clap::Parser;
 use serde::Serialize;
 use rmp_serde::Serializer;
 use std::fs;
+
+const CONFIG: Config = ParserOptions::default().config();
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -29,12 +32,11 @@ struct HSet{
 fn main() {
     let parser = Args::parse();
 
-    let result0 = Reader::from_file(parser.filein);
-    let reader = result0.expect("Error during file opening");
+    let mut reader = FastaParser::<CONFIG, _>::from_file(&parser.filein).expect("Error during fasta reading");
 
     let mut kmers:HashSet<Vec<u8>> = HashSet::new();
-    for result in reader.records(){
-        let seq = result.expect("Error during fasta record parsing").seq().to_vec();
+    while let Some(_event) = reader.next(){
+        let seq = reader.get_dna_string_owned();
         for i in 0..seq.len()-parser.k+1{
             kmers.insert((&seq[i..i+parser.k]).to_vec());
         }
