@@ -4,7 +4,7 @@ This Rust script builds a hash table containing the set of k-mers from a Fasta f
 
 _Trivia:_ I originally had written this script in C++, but facing huge complications when trying to add libraries, it was decided to translate it altogether in Rust, hence the name.
 
-This script lives in the Matterhorn family, along with [translation](https://github.com/SimooonLcq/translation) and [insect](https://github.com/SimooonLcq/insect).
+This script lives in the Matterhorn family, along with [cheesy_query](https://github.com/SimooonLcq/cheesy_query) and [insect](https://github.com/SimooonLcq/insect).
 
 **Parameters:**
 
