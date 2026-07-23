@@ -19,7 +19,7 @@ struct Args {
     #[arg(short = 'f', long = "file")]
     filein: String,
 
-    ///Output Json filename
+    ///Output MessagePack filename
     #[arg(short = 'o', long = "output")]
     fileout: String,
 }
