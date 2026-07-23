@@ -4,6 +4,8 @@ This Rust script builds a hash table containing the set of k-mers from a Fasta f
 
 _Trivia:_ I originally had written this script in C++, but facing huge complications when trying to add libraries, it was decided to translate it altogether in Rust, hence the name.
 
+This script lives in the Matterhorn family, along with [translation](https://github.com/SimooonLcq/translation) and [insect](https://github.com/SimooonLcq/insect).
+
 **Parameters:**
 
 -i : Fasta file containing the sequence(s) to extract k-mers from. Can be Multifasta. Sequences must be on a single line.
